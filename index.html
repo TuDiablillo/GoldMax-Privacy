@@ -4,90 +4,440 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Politica de Privacidad - Mi GoldMax</title>
+    <link rel="icon" type="image/png" href="icon.png">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #f5f5f7;
-            color: #1d1d1f;
-            line-height: 1.6;
+        :root {
+            --blue: #007AFF;
+            --blue-dark: #0055CC;
+            --green: #34C759;
+            --purple: #AF52DE;
+            --orange: #FF9500;
+            --red: #FF3B30;
+            --cyan: #32ADE6;
+            --indigo: #5856D6;
+            --teal: #30B0C7;
+            --pink: #FF2D55;
+            --gray-bg: #f5f5f7;
+            --gray-text: #86868b;
+            --dark: #1d1d1f;
+            --body-text: #424245;
         }
-        .container {
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
+            background: var(--gray-bg);
+            color: var(--dark);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero Header */
+        .hero {
+            background: linear-gradient(135deg, #007AFF 0%, #5856D6 50%, #AF52DE 100%);
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px 20px;
         }
-        h1 {
-            font-size: 2em;
+        .hero img {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 2.4em;
+            font-weight: 700;
+            color: white;
             margin-bottom: 8px;
+            letter-spacing: -0.5px;
         }
-        .updated {
-            color: #86868b;
-            font-size: 0.9em;
-            margin-bottom: 32px;
+        .hero p {
+            color: rgba(255,255,255,0.85);
+            font-size: 1.05em;
         }
-        .section {
-            background: white;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 16px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        .hero-badge {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 16px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            color: white;
+            font-size: 0.85em;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.25);
         }
-        .section h2 {
-            font-size: 1.2em;
-            margin-bottom: 12px;
-            color: #1d1d1f;
+
+        /* Navigation */
+        .nav {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 12px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .section p, .section ul {
-            color: #424245;
+        .nav-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
             font-size: 0.95em;
         }
-        .section ul {
-            padding-left: 20px;
-            margin-top: 8px;
+        .nav-brand img {
+            width: 32px;
+            height: 32px;
+            border-radius: 7px;
         }
-        .section ul li {
-            margin-bottom: 4px;
+        .nav-links {
+            display: flex;
+            gap: 24px;
         }
-        .contact-info {
-            background: #007AFF;
-            color: white;
-            border-radius: 16px;
-            padding: 24px;
-            margin-top: 24px;
+        .nav-links a {
+            text-decoration: none;
+            color: var(--blue);
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: opacity 0.2s;
         }
-        .contact-info h2 {
-            color: white;
+        .nav-links a:hover { opacity: 0.7; }
+        .nav-links a.active {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        /* Content */
+        .container {
+            max-width: 800px;
+            margin: -40px auto 0;
+            padding: 0 20px 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: white;
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03);
+        }
+        .toc h3 {
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-text);
+            margin-bottom: 16px;
+        }
+        .toc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .toc a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--body-text);
+            font-size: 0.9em;
+            padding: 8px 12px;
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+        .toc a:hover {
+            background: var(--gray-bg);
+            color: var(--blue);
+        }
+        .toc-num {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background: var(--gray-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75em;
+            font-weight: 600;
+            color: var(--gray-text);
+            flex-shrink: 0;
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03);
+            transition: transform 0.2s;
+        }
+        .section:hover {
+            transform: translateY(-1px);
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+        .section-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3em;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .section p {
+            color: var(--body-text);
+            font-size: 0.95em;
             margin-bottom: 12px;
         }
-        .contact-info p {
-            color: rgba(255,255,255,0.9);
+        .section p:last-child { margin-bottom: 0; }
+        .section strong {
+            color: var(--dark);
+            font-weight: 600;
         }
-        .contact-info a {
+        .section ul {
+            color: var(--body-text);
+            font-size: 0.95em;
+            padding-left: 0;
+            list-style: none;
+            margin: 8px 0 16px;
+        }
+        .section ul li {
+            padding: 6px 0 6px 28px;
+            position: relative;
+        }
+        .section ul li::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 14px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--blue);
+            opacity: 0.5;
+        }
+
+        /* Color variants for icons */
+        .icon-blue { background: rgba(0,122,255,0.12); }
+        .icon-purple { background: rgba(88,86,214,0.12); }
+        .icon-cyan { background: rgba(50,173,230,0.12); }
+        .icon-orange { background: rgba(255,149,0,0.12); }
+        .icon-green { background: rgba(52,199,89,0.12); }
+        .icon-indigo { background: rgba(88,86,214,0.12); }
+        .icon-teal { background: rgba(48,176,199,0.12); }
+        .icon-pink { background: rgba(255,45,85,0.12); }
+        .icon-red { background: rgba(255,59,48,0.12); }
+
+        /* Contact Card */
+        .contact-card {
+            background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+            border-radius: 20px;
+            padding: 36px 32px;
+            margin-top: 8px;
+            box-shadow: 0 8px 32px rgba(0,122,255,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .contact-card h2 {
             color: white;
-            text-decoration: underline;
+            font-size: 1.3em;
+            margin-bottom: 16px;
         }
+        .contact-card p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95em;
+            margin-bottom: 20px;
+        }
+        .contact-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+        .contact-method {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: all 0.2s;
+        }
+        .contact-method:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+        .contact-method .cm-icon {
+            font-size: 1.6em;
+            margin-bottom: 8px;
+        }
+        .contact-method .cm-label {
+            font-size: 0.8em;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .contact-method .cm-value {
+            font-size: 0.75em;
+            opacity: 0.8;
+        }
+        .contact-company {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85em;
+            text-align: center;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 32px 20px;
-            color: #86868b;
+            padding: 40px 20px;
+            color: var(--gray-text);
             font-size: 0.85em;
+        }
+        footer a {
+            color: var(--blue);
+            text-decoration: none;
+        }
+        footer a:hover { text-decoration: underline; }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero { padding: 40px 20px 60px; }
+            .hero h1 { font-size: 1.8em; }
+            .toc-grid { grid-template-columns: 1fr; }
+            .contact-methods { grid-template-columns: 1fr; }
+            .section { padding: 24px; }
+            .nav-links { gap: 16px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Politica de Privacidad</h1>
-        <p class="updated">Ultima actualizacion: Marzo 2026</p>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <img src="icon.png" alt="GoldMax">
+                <span>Mi GoldMax</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="active">Privacidad</a>
+                <a href="support.html">Soporte</a>
+            </div>
+        </div>
+    </nav>
 
-        <div class="section">
-            <h2>1. Introduccion</h2>
-            <p>En GoldMax, nos comprometemos a proteger su privacidad y sus datos personales. Esta politica describe como recopilamos, utilizamos, almacenamos y protegemos su informacion cuando utiliza nuestra aplicacion movil "Mi GoldMax" y nuestros servicios de internet.</p>
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-content">
+            <img src="icon.png" alt="Mi GoldMax App Icon">
+            <h1>Politica de Privacidad</h1>
+            <p>Como protegemos y manejamos su informacion personal</p>
+            <span class="hero-badge">Ultima actualizacion: Marzo 2026</span>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <div class="container">
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>Contenido</h3>
+            <div class="toc-grid">
+                <a href="#intro"><span class="toc-num">1</span> Introduccion</a>
+                <a href="#collect"><span class="toc-num">2</span> Informacion Recopilada</a>
+                <a href="#use"><span class="toc-num">3</span> Uso de Informacion</a>
+                <a href="#share"><span class="toc-num">4</span> Compartir Datos</a>
+                <a href="#security"><span class="toc-num">5</span> Seguridad</a>
+                <a href="#rights"><span class="toc-num">6</span> Sus Derechos</a>
+                <a href="#retention"><span class="toc-num">7</span> Retencion de Datos</a>
+                <a href="#cookies"><span class="toc-num">8</span> Cookies y Tecnologias</a>
+                <a href="#minors"><span class="toc-num">9</span> Menores de Edad</a>
+                <a href="#changes"><span class="toc-num">10</span> Cambios</a>
+                <a href="#contact"><span class="toc-num">11</span> Contacto</a>
+            </div>
         </div>
 
-        <div class="section">
-            <h2>2. Informacion que Recopilamos</h2>
-            <p>Recopilamos los siguientes tipos de informacion:</p>
+        <!-- Sections -->
+        <div class="section" id="intro">
+            <div class="section-header">
+                <div class="section-icon icon-blue">&#x1F6E1;</div>
+                <h2>1. Introduccion</h2>
+            </div>
+            <p>En <strong>GoldMax</strong>, nos comprometemos a proteger su privacidad y sus datos personales. Esta politica describe como recopilamos, utilizamos, almacenamos y protegemos su informacion cuando utiliza nuestra aplicacion movil <strong>"Mi GoldMax"</strong> y nuestros servicios de internet.</p>
+            <p>GoldMax es un proveedor de servicios de internet con sede en la Republica Dominicana. Nuestra aplicacion movil permite a nuestros clientes gestionar su servicio, consultar facturas, crear tickets de soporte y comunicarse con nuestro equipo tecnico.</p>
+        </div>
+
+        <div class="section" id="collect">
+            <div class="section-header">
+                <div class="section-icon icon-purple">&#x1F4CB;</div>
+                <h2>2. Informacion que Recopilamos</h2>
+            </div>
             <p><strong>Informacion Personal:</strong></p>
             <ul>
                 <li>Nombre completo</li>
@@ -100,109 +450,170 @@
             <ul>
                 <li>Direccion IP</li>
                 <li>Tipo de dispositivo y sistema operativo</li>
-                <li>Datos de uso del servicio</li>
+                <li>Datos de uso del servicio de internet</li>
             </ul>
             <p><strong>Informacion de Ubicacion:</strong></p>
             <ul>
-                <li>Ubicacion GPS (con su consentimiento explicito)</li>
+                <li>Ubicacion GPS (solo con su consentimiento explicito)</li>
                 <li>Direccion de instalacion del servicio</li>
             </ul>
         </div>
 
-        <div class="section">
-            <h2>3. Como Utilizamos su Informacion</h2>
-            <p>Utilizamos su informacion para:</p>
+        <div class="section" id="use">
+            <div class="section-header">
+                <div class="section-icon icon-cyan">&#x2699;</div>
+                <h2>3. Como Utilizamos su Informacion</h2>
+            </div>
+            <p>Utilizamos su informacion exclusivamente para:</p>
             <ul>
                 <li>Proporcionar y mantener nuestros servicios de internet</li>
-                <li>Procesar pagos y facturacion</li>
-                <li>Brindar soporte tecnico</li>
+                <li>Procesar pagos y facturacion mensual</li>
+                <li>Brindar soporte tecnico a traves de tickets</li>
                 <li>Enviar notificaciones importantes sobre su servicio</li>
-                <li>Mejorar nuestros servicios</li>
-                <li>Cumplir con obligaciones legales</li>
+                <li>Coordinar visitas tecnicas a su domicilio</li>
+                <li>Mejorar la calidad de nuestros servicios</li>
+                <li>Cumplir con obligaciones legales aplicables</li>
                 <li>Prevenir fraudes y actividades ilicitas</li>
             </ul>
         </div>
 
-        <div class="section">
-            <h2>4. Compartir Informacion</h2>
-            <p>No vendemos su informacion personal. Podemos compartirla con:</p>
+        <div class="section" id="share">
+            <div class="section-header">
+                <div class="section-icon icon-orange">&#x1F465;</div>
+                <h2>4. Compartir Informacion</h2>
+            </div>
+            <p><strong>No vendemos su informacion personal bajo ninguna circunstancia.</strong> Podemos compartirla unicamente con:</p>
             <ul>
-                <li>Proveedores de servicios que nos ayudan a operar</li>
-                <li>Autoridades legales cuando sea requerido por ley</li>
-                <li>Socios comerciales (con su consentimiento previo)</li>
+                <li>Proveedores de servicios que nos ayudan a operar (procesamiento de pagos, hosting)</li>
+                <li>Autoridades legales cuando sea requerido por ley dominicana</li>
+                <li>Socios comerciales (unicamente con su consentimiento previo y explicito)</li>
             </ul>
-            <p>Todos nuestros proveedores estan obligados a proteger su informacion bajo acuerdos de confidencialidad.</p>
+            <p>Todos nuestros proveedores estan obligados a proteger su informacion bajo acuerdos de confidencialidad estrictos.</p>
         </div>
 
-        <div class="section">
-            <h2>5. Seguridad de Datos</h2>
-            <p>Implementamos medidas de seguridad para proteger su informacion:</p>
+        <div class="section" id="security">
+            <div class="section-header">
+                <div class="section-icon icon-green">&#x1F512;</div>
+                <h2>5. Seguridad de Datos</h2>
+            </div>
+            <p>Implementamos medidas de seguridad robustas para proteger su informacion:</p>
             <ul>
-                <li>Encriptacion de datos en transito y reposo</li>
+                <li>Encriptacion de datos en transito (HTTPS/TLS) y en reposo</li>
+                <li>Autenticacion biometrica (Face ID) para acceso seguro</li>
+                <li>Tokens de autenticacion con expiracion automatica</li>
                 <li>Acceso restringido a personal autorizado</li>
                 <li>Monitoreo continuo de sistemas</li>
-                <li>Copias de seguridad regulares</li>
-                <li>Autenticacion biometrica (Face ID)</li>
+                <li>Copias de seguridad regulares y cifradas</li>
+                <li>Deteccion de actividad sospechosa</li>
             </ul>
         </div>
 
-        <div class="section">
-            <h2>6. Sus Derechos</h2>
-            <p>Usted tiene derecho a:</p>
+        <div class="section" id="rights">
+            <div class="section-header">
+                <div class="section-icon icon-indigo">&#x2705;</div>
+                <h2>6. Sus Derechos</h2>
+            </div>
+            <p>De acuerdo con la legislacion vigente, usted tiene derecho a:</p>
             <ul>
-                <li>Acceder a sus datos personales</li>
-                <li>Rectificar informacion incorrecta</li>
-                <li>Solicitar eliminacion de sus datos</li>
-                <li>Oponerse al procesamiento de sus datos</li>
-                <li>Exportar sus datos en formato portable</li>
-                <li>Retirar su consentimiento en cualquier momento</li>
+                <li><strong>Acceso:</strong> Consultar sus datos personales almacenados</li>
+                <li><strong>Rectificacion:</strong> Corregir informacion incorrecta o desactualizada</li>
+                <li><strong>Eliminacion:</strong> Solicitar la eliminacion de sus datos personales</li>
+                <li><strong>Oposicion:</strong> Oponerse al procesamiento de sus datos</li>
+                <li><strong>Portabilidad:</strong> Exportar sus datos en formato legible</li>
+                <li><strong>Revocacion:</strong> Retirar su consentimiento en cualquier momento</li>
             </ul>
-            <p>Para ejercer estos derechos, contactenos a traves de la aplicacion o nuestros canales de atencion.</p>
+            <p>Para ejercer estos derechos, contactenos a traves de la aplicacion Mi GoldMax, por WhatsApp al (829) 789-3277, o por correo a soporte@goldmax.do.</p>
         </div>
 
-        <div class="section">
-            <h2>7. Retencion de Datos</h2>
-            <p>Conservamos su informacion mientras mantenga una relacion activa con nosotros, sea necesario para cumplir obligaciones legales, o sea requerido para resolver disputas. Una vez terminada la relacion comercial, sus datos seran eliminados o anonimizados en un plazo razonable.</p>
-        </div>
-
-        <div class="section">
-            <h2>8. Cookies y Tecnologias</h2>
-            <p>Nuestra aplicacion puede utilizar:</p>
+        <div class="section" id="retention">
+            <div class="section-header">
+                <div class="section-icon icon-teal">&#x23F3;</div>
+                <h2>7. Retencion de Datos</h2>
+            </div>
+            <p>Conservamos su informacion personal mientras:</p>
             <ul>
-                <li>Almacenamiento local para preferencias</li>
-                <li>Tokens de autenticacion seguros</li>
-                <li>Analisis de uso anonimizado</li>
+                <li>Mantenga una relacion comercial activa con GoldMax</li>
+                <li>Sea necesario para cumplir con obligaciones legales dominicanas</li>
+                <li>Sea requerido para resolver disputas pendientes</li>
+                <li>Sea necesario para proteger nuestros intereses legitimos</li>
             </ul>
-            <p>No utilizamos cookies de terceros para publicidad.</p>
+            <p>Una vez terminada la relacion comercial, sus datos personales seran eliminados o anonimizados en un plazo maximo de 90 dias, salvo que la ley requiera un periodo de retencion mayor.</p>
         </div>
 
-        <div class="section">
-            <h2>9. Menores de Edad</h2>
-            <p>Nuestros servicios no estan dirigidos a menores de 18 anos. No recopilamos intencionalmente informacion de menores. Si detectamos que hemos recopilado datos de un menor, los eliminaremos inmediatamente.</p>
+        <div class="section" id="cookies">
+            <div class="section-header">
+                <div class="section-icon icon-pink">&#x1F4F1;</div>
+                <h2>8. Tecnologias Utilizadas</h2>
+            </div>
+            <p>Nuestra aplicacion movil utiliza las siguientes tecnologias:</p>
+            <ul>
+                <li>Almacenamiento local seguro (Keychain) para credenciales</li>
+                <li>Tokens de autenticacion JWT con expiracion automatica</li>
+                <li>Cache local para mejorar el rendimiento</li>
+                <li>Notificaciones push para alertas del servicio</li>
+            </ul>
+            <p><strong>No utilizamos cookies de terceros, rastreadores de publicidad, ni herramientas de seguimiento invasivas.</strong></p>
         </div>
 
-        <div class="section">
-            <h2>10. Cambios a esta Politica</h2>
-            <p>Podemos actualizar esta politica periodicamente. Le notificaremos de cambios significativos a traves de notificaciones en la aplicacion o correo electronico.</p>
+        <div class="section" id="minors">
+            <div class="section-header">
+                <div class="section-icon icon-red">&#x1F6B8;</div>
+                <h2>9. Menores de Edad</h2>
+            </div>
+            <p>Nuestros servicios y aplicacion movil no estan dirigidos a menores de 18 anos. No recopilamos intencionalmente informacion personal de menores de edad.</p>
+            <p>Si detectamos que hemos recopilado datos de un menor sin el consentimiento de su tutor legal, procederemos a eliminarlos inmediatamente. Si usted es padre o tutor y cree que su hijo nos ha proporcionado informacion personal, contactenos de inmediato.</p>
         </div>
 
-        <div class="contact-info">
-            <h2>11. Contacto</h2>
-            <p>Si tiene preguntas sobre esta politica o el manejo de sus datos, puede contactarnos:</p>
-            <p><br>
-                <strong>GoldMax</strong><br>
-                Proveedor de servicios de internet<br>
-                Republica Dominicana<br><br>
-                WhatsApp: <a href="https://wa.me/18297893277">(829) 789-3277</a><br>
-                Telefono: <a href="tel:+18297893277">(829) 789-3277</a><br>
-                Correo: <a href="mailto:soporte@goldmax.do">soporte@goldmax.do</a>
-            </p>
-            <p><br>Responderemos a su solicitud en un plazo maximo de 30 dias.</p>
+        <div class="section" id="changes">
+            <div class="section-header">
+                <div class="section-icon icon-orange">&#x1F504;</div>
+                <h2>10. Cambios a esta Politica</h2>
+            </div>
+            <p>GoldMax se reserva el derecho de actualizar esta politica de privacidad periodicamente. Le notificaremos de cualquier cambio significativo a traves de:</p>
+            <ul>
+                <li>Notificacion push en la aplicacion Mi GoldMax</li>
+                <li>Correo electronico a la direccion registrada en su cuenta</li>
+                <li>Aviso destacado al iniciar sesion en la aplicacion</li>
+            </ul>
+            <p>Le recomendamos revisar esta politica regularmente. El uso continuado de nuestros servicios despues de una actualizacion constituye su aceptacion de los cambios.</p>
+        </div>
+
+        <!-- Contact Card -->
+        <div class="contact-card" id="contact">
+            <h2>&#x1F4EC; Contacto</h2>
+            <p>Si tiene preguntas sobre esta politica de privacidad o sobre el manejo de sus datos personales, estamos a su disposicion.</p>
+            <div class="contact-methods">
+                <a href="https://wa.me/18297893277" class="contact-method">
+                    <div class="cm-icon">&#x1F4AC;</div>
+                    <span class="cm-label">WhatsApp</span>
+                    <span class="cm-value">(829) 789-3277</span>
+                </a>
+                <a href="tel:+18297893277" class="contact-method">
+                    <div class="cm-icon">&#x1F4DE;</div>
+                    <span class="cm-label">Telefono</span>
+                    <span class="cm-value">(829) 789-3277</span>
+                </a>
+                <a href="mailto:soporte@goldmax.do" class="contact-method">
+                    <div class="cm-icon">&#x2709;</div>
+                    <span class="cm-label">Correo</span>
+                    <span class="cm-value">soporte@goldmax.do</span>
+                </a>
+            </div>
+            <div class="contact-company">
+                <strong>GoldMax</strong> &mdash; Proveedor de Servicios de Internet<br>
+                Republica Dominicana<br>
+                Tiempo de respuesta: maximo 30 dias
+            </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 GoldMax. Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="index.html">Politica de Privacidad</a>
+            <a href="support.html">Soporte</a>
+        </div>
     </footer>
 </body>
 </html>
