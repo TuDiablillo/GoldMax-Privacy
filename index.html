@@ -1,108 +1,82 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Politica de Privacidad - Mi GoldMax</title>
+    <title>Mi GoldMax - Tu servicio de internet en tus manos</title>
     <link rel="icon" type="image/png" href="icon.png">
+    <meta name="description" content="Mi GoldMax es la app oficial de GoldMax para gestionar tu servicio de internet desde tu iPhone.">
     <style>
+        /* ===== THEME SYSTEM ===== */
         :root {
-            --blue: #007AFF;
-            --blue-dark: #0055CC;
-            --green: #34C759;
-            --purple: #AF52DE;
-            --orange: #FF9500;
-            --red: #FF3B30;
-            --cyan: #32ADE6;
-            --indigo: #5856D6;
-            --teal: #30B0C7;
-            --pink: #FF2D55;
-            --gray-bg: #f5f5f7;
-            --gray-text: #86868b;
-            --dark: #1d1d1f;
-            --body-text: #424245;
+            --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        [data-theme="dark"] {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-card: rgba(255,255,255,0.04);
+            --bg-card-hover: rgba(255,255,255,0.07);
+            --bg-glass: rgba(20,20,20,0.8);
+            --text-primary: #f5f5f7;
+            --text-secondary: #86868b;
+            --text-tertiary: #6e6e73;
+            --border: rgba(255,255,255,0.08);
+            --border-hover: rgba(255,255,255,0.15);
+            --glow-1: rgba(0,122,255,0.15);
+            --glow-2: rgba(88,86,214,0.1);
+            --shadow-card: 0 0 0 1px rgba(255,255,255,0.05);
+            --icon-sun: none;
+            --icon-moon: block;
+        }
+        [data-theme="light"] {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --bg-card: rgba(0,0,0,0.03);
+            --bg-card-hover: rgba(0,0,0,0.06);
+            --bg-glass: rgba(255,255,255,0.8);
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --text-tertiary: #86868b;
+            --border: rgba(0,0,0,0.08);
+            --border-hover: rgba(0,0,0,0.15);
+            --glow-1: rgba(0,122,255,0.08);
+            --glow-2: rgba(88,86,214,0.05);
+            --shadow-card: 0 1px 4px rgba(0,0,0,0.06);
+            --icon-sun: block;
+            --icon-moon: none;
         }
 
+        /* ===== BASE ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
-            background: var(--gray-bg);
-            color: var(--dark);
-            line-height: 1.7;
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            transition: background var(--transition), color var(--transition);
         }
 
-        /* Hero Header */
-        .hero {
-            background: linear-gradient(135deg, #007AFF 0%, #5856D6 50%, #AF52DE 100%);
-            padding: 60px 20px 80px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(ellipse at 30% 50%, rgba(255,255,255,0.15) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .hero img {
-            width: 80px;
-            height: 80px;
-            border-radius: 18px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            margin-bottom: 20px;
-        }
-        .hero h1 {
-            font-size: 2.4em;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
-        .hero p {
-            color: rgba(255,255,255,0.85);
-            font-size: 1.05em;
-        }
-        .hero-badge {
-            display: inline-block;
-            margin-top: 16px;
-            padding: 6px 16px;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            color: white;
-            font-size: 0.85em;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.25);
-        }
-
-        /* Navigation */
+        /* ===== NAVBAR ===== */
         .nav {
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            padding: 12px 20px;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            background: var(--bg-glass);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: background var(--transition), border var(--transition);
         }
         .nav-inner {
-            max-width: 800px;
+            max-width: 1080px;
             margin: 0 auto;
+            padding: 0 22px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -112,508 +86,669 @@
             align-items: center;
             gap: 10px;
             text-decoration: none;
-            color: var(--dark);
+            color: var(--text-primary);
             font-weight: 600;
             font-size: 0.95em;
+            transition: color var(--transition);
         }
-        .nav-brand img {
-            width: 32px;
-            height: 32px;
-            border-radius: 7px;
-        }
+        .nav-brand img { width: 30px; height: 30px; border-radius: 7px; }
         .nav-links {
             display: flex;
-            gap: 24px;
+            align-items: center;
+            gap: 28px;
         }
         .nav-links a {
+            color: var(--text-secondary);
             text-decoration: none;
-            color: var(--blue);
-            font-size: 0.9em;
-            font-weight: 500;
-            transition: opacity 0.2s;
+            font-size: 0.82em;
+            font-weight: 400;
+            transition: color 0.2s;
         }
-        .nav-links a:hover { opacity: 0.7; }
-        .nav-links a.active {
-            color: var(--dark);
-            font-weight: 600;
-        }
-
-        /* Content */
-        .container {
-            max-width: 800px;
-            margin: -40px auto 0;
-            padding: 0 20px 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Table of Contents */
-        .toc {
-            background: white;
-            border-radius: 20px;
-            padding: 28px 32px;
-            margin-bottom: 24px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03);
-        }
-        .toc h3 {
-            font-size: 0.8em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--gray-text);
-            margin-bottom: 16px;
-        }
-        .toc-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-        }
-        .toc a {
+        .nav-links a:hover { color: var(--text-primary); }
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1.1em;
+            padding: 4px;
+            transition: color 0.2s;
             display: flex;
             align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: var(--body-text);
-            font-size: 0.9em;
-            padding: 8px 12px;
-            border-radius: 10px;
-            transition: all 0.2s;
         }
-        .toc a:hover {
-            background: var(--gray-bg);
-            color: var(--blue);
+        .theme-toggle:hover { color: var(--text-primary); }
+        .theme-toggle .sun { display: var(--icon-sun); }
+        .theme-toggle .moon { display: var(--icon-moon); }
+
+        /* ===== REVEAL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
-        .toc-num {
-            width: 24px;
-            height: 24px;
-            border-radius: 6px;
-            background: var(--gray-bg);
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+        .reveal-delay-5 { transition-delay: 0.5s; }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 0.75em;
-            font-weight: 600;
-            color: var(--gray-text);
-            flex-shrink: 0;
+            text-align: center;
+            padding: 120px 24px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            pointer-events: none;
+            opacity: 0.6;
+            animation: orbFloat 10s ease-in-out infinite;
+        }
+        .orb-1 {
+            width: 500px; height: 500px;
+            background: var(--glow-1);
+            top: -10%; left: 30%;
+            animation-delay: 0s;
+        }
+        .orb-2 {
+            width: 400px; height: 400px;
+            background: var(--glow-2);
+            bottom: 0; right: 20%;
+            animation-delay: -5s;
+        }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -20px) scale(1.05); }
+            66% { transform: translate(-20px, 15px) scale(0.95); }
+        }
+        .hero-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        .hero h1 {
+            font-size: clamp(3em, 8vw, 5.5em);
+            font-weight: 700;
+            letter-spacing: -3px;
+            line-height: 1.05;
+            margin-bottom: 6px;
+        }
+        .hero .subtitle {
+            font-size: clamp(3em, 8vw, 5.5em);
+            font-weight: 700;
+            letter-spacing: -3px;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #007AFF 0%, #5856D6 40%, #AF52DE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-desc {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            transition: color var(--transition);
+        }
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 80px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 32px;
+            border-radius: 980px;
+            font-size: 1em;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-fill {
+            background: #007AFF;
+            color: white;
+        }
+        .btn-fill:hover { background: #0066DD; transform: scale(1.02); }
+        .btn-outline {
+            background: transparent;
+            color: #007AFF;
+            border: none;
+        }
+        .btn-outline:hover { text-decoration: underline; }
+
+        /* Phone Gallery */
+        .phones-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        .phone {
+            position: absolute;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .phone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .phone-center {
+            width: 240px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+        }
+        .phone-left {
+            width: 200px;
+            left: calc(50% - 260px);
+            top: 30px;
+            z-index: 2;
+            opacity: 0.6;
+            transform: perspective(800px) rotateY(10deg);
+            box-shadow: 0 16px 60px rgba(0,0,0,0.25);
+        }
+        .phone-right {
+            width: 200px;
+            right: calc(50% - 260px);
+            top: 30px;
+            z-index: 2;
+            opacity: 0.6;
+            transform: perspective(800px) rotateY(-10deg);
+            box-shadow: 0 16px 60px rgba(0,0,0,0.25);
         }
 
-        /* Sections */
+        /* ===== FEATURES SECTION ===== */
         .section {
-            background: white;
-            border-radius: 20px;
-            padding: 32px;
-            margin-bottom: 16px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03);
-            transition: transform 0.2s;
+            padding: 140px 24px;
+            position: relative;
         }
-        .section:hover {
-            transform: translateY(-1px);
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
         }
         .section-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 18px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 72px;
         }
-        .section-icon {
-            width: 44px;
-            height: 44px;
+        .section-overline {
+            font-size: 0.85em;
+            font-weight: 500;
+            color: #007AFF;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+        .section-header h2 {
+            font-size: clamp(2em, 5vw, 3.2em);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        .section-header p {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            transition: color var(--transition);
+        }
+
+        /* Feature Cards */
+        .cards-grid {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 28px;
+            transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            background: radial-gradient(ellipse at 50% 0%, var(--glow-1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-card);
+        }
+        .card:hover::before { opacity: 1; }
+        .card-icon {
+            position: relative;
+            width: 48px;
+            height: 48px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3em;
-            flex-shrink: 0;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            background: rgba(0,122,255,0.1);
         }
-        .section h2 {
+        .ci-green { background: rgba(52,199,89,0.1); }
+        .ci-orange { background: rgba(255,149,0,0.1); }
+        .ci-purple { background: rgba(175,82,222,0.1); }
+        .ci-cyan { background: rgba(50,173,230,0.1); }
+        .ci-red { background: rgba(255,59,48,0.1); }
+        .card h3 {
+            position: relative;
             font-size: 1.15em;
             font-weight: 600;
-            color: var(--dark);
+            margin-bottom: 10px;
+            letter-spacing: -0.3px;
         }
-        .section p {
-            color: var(--body-text);
-            font-size: 0.95em;
-            margin-bottom: 12px;
-        }
-        .section p:last-child { margin-bottom: 0; }
-        .section strong {
-            color: var(--dark);
-            font-weight: 600;
-        }
-        .section ul {
-            color: var(--body-text);
-            font-size: 0.95em;
-            padding-left: 0;
-            list-style: none;
-            margin: 8px 0 16px;
-        }
-        .section ul li {
-            padding: 6px 0 6px 28px;
+        .card p {
             position: relative;
-        }
-        .section ul li::before {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 14px;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--blue);
-            opacity: 0.5;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.6;
+            transition: color var(--transition);
         }
 
-        /* Color variants for icons */
-        .icon-blue { background: rgba(0,122,255,0.12); }
-        .icon-purple { background: rgba(88,86,214,0.12); }
-        .icon-cyan { background: rgba(50,173,230,0.12); }
-        .icon-orange { background: rgba(255,149,0,0.12); }
-        .icon-green { background: rgba(52,199,89,0.12); }
-        .icon-indigo { background: rgba(88,86,214,0.12); }
-        .icon-teal { background: rgba(48,176,199,0.12); }
-        .icon-pink { background: rgba(255,45,85,0.12); }
-        .icon-red { background: rgba(255,59,48,0.12); }
-
-        /* Contact Card */
-        .contact-card {
-            background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
-            border-radius: 20px;
-            padding: 36px 32px;
-            margin-top: 8px;
-            box-shadow: 0 8px 32px rgba(0,122,255,0.25);
+        /* ===== IMMERSIVE SECTION ===== */
+        .immersive {
+            padding: 160px 24px;
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
-        .contact-card::before {
-            content: '';
+        .immersive-bg {
             position: absolute;
-            top: -30%;
-            right: -20%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 50% at 50% 50%, var(--glow-1) 0%, transparent 70%);
             pointer-events: none;
         }
-        .contact-card h2 {
-            color: white;
-            font-size: 1.3em;
-            margin-bottom: 16px;
+        .immersive h2 {
+            font-size: clamp(2.5em, 6vw, 4em);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            position: relative;
         }
-        .contact-card p {
-            color: rgba(255,255,255,0.85);
-            font-size: 0.95em;
-            margin-bottom: 20px;
+        .immersive p {
+            font-size: 1.15em;
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin: 0 auto;
+            line-height: 1.6;
+            position: relative;
+            transition: color var(--transition);
         }
-        .contact-methods {
+
+        /* Steps */
+        .steps-row {
+            max-width: 800px;
+            margin: 64px auto 0;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 12px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            position: relative;
         }
-        .contact-method {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 14px;
-            padding: 16px;
+        .step-item {
             text-align: center;
-            text-decoration: none;
+            position: relative;
+        }
+        .step-number {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007AFF, #5856D6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15em;
+            font-weight: 700;
             color: white;
-            transition: all 0.2s;
+            margin: 0 auto 18px;
         }
-        .contact-method:hover {
-            background: rgba(255,255,255,0.25);
-            transform: translateY(-2px);
-        }
-        .contact-method .cm-icon {
-            font-size: 1.6em;
+        .step-item h4 {
+            font-size: 1em;
+            font-weight: 600;
             margin-bottom: 8px;
         }
-        .contact-method .cm-label {
-            font-size: 0.8em;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 4px;
-        }
-        .contact-method .cm-value {
-            font-size: 0.75em;
-            opacity: 0.8;
-        }
-        .contact-company {
-            margin-top: 24px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            color: rgba(255,255,255,0.7);
-            font-size: 0.85em;
-            text-align: center;
+        .step-item p {
+            font-size: 0.88em;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            transition: color var(--transition);
         }
 
-        /* Footer */
-        footer {
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            padding: 140px 24px;
+        }
+        .contact-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
             text-align: center;
-            padding: 40px 20px;
-            color: var(--gray-text);
-            font-size: 0.85em;
         }
-        footer a {
-            color: var(--blue);
+        .contact-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 48px;
+        }
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 36px 20px;
             text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
-        footer a:hover { text-decoration: underline; }
+        .contact-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-6px);
+        }
+        .cc-icon {
+            font-size: 2em;
+            margin-bottom: 16px;
+        }
+        .contact-card h4 {
+            font-size: 1em;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .contact-card p {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            transition: color var(--transition);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 20px 24px;
+            transition: border var(--transition);
+        }
+        .footer-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .footer-text {
+            font-size: 0.78em;
+            color: var(--text-tertiary);
+            transition: color var(--transition);
+        }
         .footer-links {
             display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 8px;
+            gap: 20px;
         }
+        .footer-links a {
+            font-size: 0.78em;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text-primary); }
 
-        /* Responsive */
-        @media (max-width: 640px) {
-            .hero { padding: 40px 20px 60px; }
-            .hero h1 { font-size: 1.8em; }
-            .toc-grid { grid-template-columns: 1fr; }
-            .contact-methods { grid-template-columns: 1fr; }
-            .section { padding: 24px; }
-            .nav-links { gap: 16px; }
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .cards-grid { grid-template-columns: 1fr 1fr; }
+            .contact-cards { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+            .steps-row { grid-template-columns: 1fr; max-width: 320px; }
+            .phones-container { height: 400px; }
+            .phone-center { width: 200px; }
+            .phone-left { width: 160px; left: calc(50% - 210px); }
+            .phone-right { width: 160px; right: calc(50% - 210px); }
+            .nav-links a.hide-mobile { display: none; }
+        }
+        @media (max-width: 600px) {
+            .hero { padding: 100px 20px 40px; }
+            .cards-grid { grid-template-columns: 1fr; }
+            .hero-cta { flex-direction: column; align-items: center; }
+            .phones-container { height: 340px; }
+            .phone-center { width: 180px; }
+            .phone-left, .phone-right { width: 140px; }
+            .phone-left { left: calc(50% - 185px); }
+            .phone-right { right: calc(50% - 185px); }
+            .section { padding: 100px 20px; }
+            .immersive { padding: 100px 20px; }
+            .footer-inner { flex-direction: column; gap: 10px; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-inner">
-            <a href="index.html" class="nav-brand">
-                <img src="icon.png" alt="GoldMax">
-                <span>Mi GoldMax</span>
-            </a>
-            <div class="nav-links">
-                <a href="index.html" class="active">Privacidad</a>
-                <a href="support.html">Soporte</a>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero -->
-    <header class="hero">
-        <div class="hero-content">
-            <img src="icon.png" alt="Mi GoldMax App Icon">
-            <h1>Politica de Privacidad</h1>
-            <p>Como protegemos y manejamos su informacion personal</p>
-            <span class="hero-badge">Ultima actualizacion: Marzo 2026</span>
-        </div>
-    </header>
-
-    <!-- Content -->
-    <div class="container">
-
-        <!-- Table of Contents -->
-        <div class="toc">
-            <h3>Contenido</h3>
-            <div class="toc-grid">
-                <a href="#intro"><span class="toc-num">1</span> Introduccion</a>
-                <a href="#collect"><span class="toc-num">2</span> Informacion Recopilada</a>
-                <a href="#use"><span class="toc-num">3</span> Uso de Informacion</a>
-                <a href="#share"><span class="toc-num">4</span> Compartir Datos</a>
-                <a href="#security"><span class="toc-num">5</span> Seguridad</a>
-                <a href="#rights"><span class="toc-num">6</span> Sus Derechos</a>
-                <a href="#retention"><span class="toc-num">7</span> Retencion de Datos</a>
-                <a href="#cookies"><span class="toc-num">8</span> Cookies y Tecnologias</a>
-                <a href="#minors"><span class="toc-num">9</span> Menores de Edad</a>
-                <a href="#changes"><span class="toc-num">10</span> Cambios</a>
-                <a href="#contact"><span class="toc-num">11</span> Contacto</a>
-            </div>
-        </div>
-
-        <!-- Sections -->
-        <div class="section" id="intro">
-            <div class="section-header">
-                <div class="section-icon icon-blue">&#x1F6E1;</div>
-                <h2>1. Introduccion</h2>
-            </div>
-            <p>En <strong>GoldMax</strong>, nos comprometemos a proteger su privacidad y sus datos personales. Esta politica describe como recopilamos, utilizamos, almacenamos y protegemos su informacion cuando utiliza nuestra aplicacion movil <strong>"Mi GoldMax"</strong> y nuestros servicios de internet.</p>
-            <p>GoldMax es un proveedor de servicios de internet con sede en la Republica Dominicana. Nuestra aplicacion movil permite a nuestros clientes gestionar su servicio, consultar facturas, crear tickets de soporte y comunicarse con nuestro equipo tecnico.</p>
-        </div>
-
-        <div class="section" id="collect">
-            <div class="section-header">
-                <div class="section-icon icon-purple">&#x1F4CB;</div>
-                <h2>2. Informacion que Recopilamos</h2>
-            </div>
-            <p><strong>Informacion Personal:</strong></p>
-            <ul>
-                <li>Nombre completo</li>
-                <li>Numero de documento de identidad</li>
-                <li>Direccion de domicilio</li>
-                <li>Numero de telefono</li>
-                <li>Correo electronico</li>
-            </ul>
-            <p><strong>Informacion Tecnica:</strong></p>
-            <ul>
-                <li>Direccion IP</li>
-                <li>Tipo de dispositivo y sistema operativo</li>
-                <li>Datos de uso del servicio de internet</li>
-            </ul>
-            <p><strong>Informacion de Ubicacion:</strong></p>
-            <ul>
-                <li>Ubicacion GPS (solo con su consentimiento explicito)</li>
-                <li>Direccion de instalacion del servicio</li>
-            </ul>
-        </div>
-
-        <div class="section" id="use">
-            <div class="section-header">
-                <div class="section-icon icon-cyan">&#x2699;</div>
-                <h2>3. Como Utilizamos su Informacion</h2>
-            </div>
-            <p>Utilizamos su informacion exclusivamente para:</p>
-            <ul>
-                <li>Proporcionar y mantener nuestros servicios de internet</li>
-                <li>Procesar pagos y facturacion mensual</li>
-                <li>Brindar soporte tecnico a traves de tickets</li>
-                <li>Enviar notificaciones importantes sobre su servicio</li>
-                <li>Coordinar visitas tecnicas a su domicilio</li>
-                <li>Mejorar la calidad de nuestros servicios</li>
-                <li>Cumplir con obligaciones legales aplicables</li>
-                <li>Prevenir fraudes y actividades ilicitas</li>
-            </ul>
-        </div>
-
-        <div class="section" id="share">
-            <div class="section-header">
-                <div class="section-icon icon-orange">&#x1F465;</div>
-                <h2>4. Compartir Informacion</h2>
-            </div>
-            <p><strong>No vendemos su informacion personal bajo ninguna circunstancia.</strong> Podemos compartirla unicamente con:</p>
-            <ul>
-                <li>Proveedores de servicios que nos ayudan a operar (procesamiento de pagos, hosting)</li>
-                <li>Autoridades legales cuando sea requerido por ley dominicana</li>
-                <li>Socios comerciales (unicamente con su consentimiento previo y explicito)</li>
-            </ul>
-            <p>Todos nuestros proveedores estan obligados a proteger su informacion bajo acuerdos de confidencialidad estrictos.</p>
-        </div>
-
-        <div class="section" id="security">
-            <div class="section-header">
-                <div class="section-icon icon-green">&#x1F512;</div>
-                <h2>5. Seguridad de Datos</h2>
-            </div>
-            <p>Implementamos medidas de seguridad robustas para proteger su informacion:</p>
-            <ul>
-                <li>Encriptacion de datos en transito (HTTPS/TLS) y en reposo</li>
-                <li>Autenticacion biometrica (Face ID) para acceso seguro</li>
-                <li>Tokens de autenticacion con expiracion automatica</li>
-                <li>Acceso restringido a personal autorizado</li>
-                <li>Monitoreo continuo de sistemas</li>
-                <li>Copias de seguridad regulares y cifradas</li>
-                <li>Deteccion de actividad sospechosa</li>
-            </ul>
-        </div>
-
-        <div class="section" id="rights">
-            <div class="section-header">
-                <div class="section-icon icon-indigo">&#x2705;</div>
-                <h2>6. Sus Derechos</h2>
-            </div>
-            <p>De acuerdo con la legislacion vigente, usted tiene derecho a:</p>
-            <ul>
-                <li><strong>Acceso:</strong> Consultar sus datos personales almacenados</li>
-                <li><strong>Rectificacion:</strong> Corregir informacion incorrecta o desactualizada</li>
-                <li><strong>Eliminacion:</strong> Solicitar la eliminacion de sus datos personales</li>
-                <li><strong>Oposicion:</strong> Oponerse al procesamiento de sus datos</li>
-                <li><strong>Portabilidad:</strong> Exportar sus datos en formato legible</li>
-                <li><strong>Revocacion:</strong> Retirar su consentimiento en cualquier momento</li>
-            </ul>
-            <p>Para ejercer estos derechos, contactenos a traves de la aplicacion Mi GoldMax, por WhatsApp al (829) 789-3277, o por correo a soporte@goldmax.do.</p>
-        </div>
-
-        <div class="section" id="retention">
-            <div class="section-header">
-                <div class="section-icon icon-teal">&#x23F3;</div>
-                <h2>7. Retencion de Datos</h2>
-            </div>
-            <p>Conservamos su informacion personal mientras:</p>
-            <ul>
-                <li>Mantenga una relacion comercial activa con GoldMax</li>
-                <li>Sea necesario para cumplir con obligaciones legales dominicanas</li>
-                <li>Sea requerido para resolver disputas pendientes</li>
-                <li>Sea necesario para proteger nuestros intereses legitimos</li>
-            </ul>
-            <p>Una vez terminada la relacion comercial, sus datos personales seran eliminados o anonimizados en un plazo maximo de 90 dias, salvo que la ley requiera un periodo de retencion mayor.</p>
-        </div>
-
-        <div class="section" id="cookies">
-            <div class="section-header">
-                <div class="section-icon icon-pink">&#x1F4F1;</div>
-                <h2>8. Tecnologias Utilizadas</h2>
-            </div>
-            <p>Nuestra aplicacion movil utiliza las siguientes tecnologias:</p>
-            <ul>
-                <li>Almacenamiento local seguro (Keychain) para credenciales</li>
-                <li>Tokens de autenticacion JWT con expiracion automatica</li>
-                <li>Cache local para mejorar el rendimiento</li>
-                <li>Notificaciones push para alertas del servicio</li>
-            </ul>
-            <p><strong>No utilizamos cookies de terceros, rastreadores de publicidad, ni herramientas de seguimiento invasivas.</strong></p>
-        </div>
-
-        <div class="section" id="minors">
-            <div class="section-header">
-                <div class="section-icon icon-red">&#x1F6B8;</div>
-                <h2>9. Menores de Edad</h2>
-            </div>
-            <p>Nuestros servicios y aplicacion movil no estan dirigidos a menores de 18 anos. No recopilamos intencionalmente informacion personal de menores de edad.</p>
-            <p>Si detectamos que hemos recopilado datos de un menor sin el consentimiento de su tutor legal, procederemos a eliminarlos inmediatamente. Si usted es padre o tutor y cree que su hijo nos ha proporcionado informacion personal, contactenos de inmediato.</p>
-        </div>
-
-        <div class="section" id="changes">
-            <div class="section-header">
-                <div class="section-icon icon-orange">&#x1F504;</div>
-                <h2>10. Cambios a esta Politica</h2>
-            </div>
-            <p>GoldMax se reserva el derecho de actualizar esta politica de privacidad periodicamente. Le notificaremos de cualquier cambio significativo a traves de:</p>
-            <ul>
-                <li>Notificacion push en la aplicacion Mi GoldMax</li>
-                <li>Correo electronico a la direccion registrada en su cuenta</li>
-                <li>Aviso destacado al iniciar sesion en la aplicacion</li>
-            </ul>
-            <p>Le recomendamos revisar esta politica regularmente. El uso continuado de nuestros servicios despues de una actualizacion constituye su aceptacion de los cambios.</p>
-        </div>
-
-        <!-- Contact Card -->
-        <div class="contact-card" id="contact">
-            <h2>&#x1F4EC; Contacto</h2>
-            <p>Si tiene preguntas sobre esta politica de privacidad o sobre el manejo de sus datos personales, estamos a su disposicion.</p>
-            <div class="contact-methods">
-                <a href="https://wa.me/18297893277" class="contact-method">
-                    <div class="cm-icon">&#x1F4AC;</div>
-                    <span class="cm-label">WhatsApp</span>
-                    <span class="cm-value">(829) 789-3277</span>
-                </a>
-                <a href="tel:+18297893277" class="contact-method">
-                    <div class="cm-icon">&#x1F4DE;</div>
-                    <span class="cm-label">Telefono</span>
-                    <span class="cm-value">(829) 789-3277</span>
-                </a>
-                <a href="mailto:soporte@goldmax.do" class="contact-method">
-                    <div class="cm-icon">&#x2709;</div>
-                    <span class="cm-label">Correo</span>
-                    <span class="cm-value">soporte@goldmax.do</span>
-                </a>
-            </div>
-            <div class="contact-company">
-                <strong>GoldMax</strong> &mdash; Proveedor de Servicios de Internet<br>
-                Republica Dominicana<br>
-                Tiempo de respuesta: maximo 30 dias
-            </div>
+<!-- Navigation -->
+<nav class="nav">
+    <div class="nav-inner">
+        <a href="#" class="nav-brand">
+            <img src="icon.png" alt="GoldMax">
+            <span>Mi GoldMax</span>
+        </a>
+        <div class="nav-links">
+            <a href="#features" class="hide-mobile">Funciones</a>
+            <a href="#contact" class="hide-mobile">Contacto</a>
+            <a href="privacy.html" class="hide-mobile">Privacidad</a>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+                <span class="sun">&#x2600;&#xFE0F;</span>
+                <span class="moon">&#x1F319;</span>
+            </button>
         </div>
     </div>
+</nav>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 GoldMax. Todos los derechos reservados.</p>
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-orb orb-1"></div>
+    <div class="hero-orb orb-2"></div>
+
+    <img src="icon-512.png" alt="Mi GoldMax" class="hero-icon reveal" width="80" height="80">
+    <h1 class="reveal reveal-delay-1">Tu internet.</h1>
+    <div class="subtitle reveal reveal-delay-2">En tus manos.</div>
+    <p class="hero-desc reveal reveal-delay-3">
+        Gestiona tu servicio de internet GoldMax desde tu iPhone. Estado, pagos, soporte y mas.
+    </p>
+    <div class="hero-cta reveal reveal-delay-4">
+        <a href="https://wa.me/18297893277?text=Hola,%20me%20interesa%20informacion%20sobre%20sus%20servicios%20de%20internet" class="btn btn-fill">Comenzar ahora</a>
+        <a href="#features" class="btn btn-outline">Conocer mas &darr;</a>
+    </div>
+
+    <div class="phones-container reveal reveal-delay-5">
+        <div class="phone phone-left">
+            <img src="screenshots/03_pagos.png" alt="Pagos" loading="lazy">
+        </div>
+        <div class="phone phone-center">
+            <img src="screenshots/02_inicio.png" alt="Inicio" loading="lazy">
+        </div>
+        <div class="phone phone-right">
+            <img src="screenshots/01_login.png" alt="Login" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- Divider -->
+<div class="section-divider"></div>
+
+<!-- Features -->
+<section class="section" id="features">
+    <div class="section-header">
+        <p class="section-overline reveal">Funciones</p>
+        <h2 class="reveal reveal-delay-1">Diseñada para<br>hacerte la vida facil.</h2>
+        <p class="reveal reveal-delay-2">Todo lo que necesitas para controlar tu servicio de internet, en una sola app.</p>
+    </div>
+
+    <div class="cards-grid">
+        <div class="card reveal">
+            <div class="card-icon">&#x1F4F6;</div>
+            <h3>Estado en Tiempo Real</h3>
+            <p>Verifica al instante si tu conexion esta activa y funcionando correctamente.</p>
+        </div>
+        <div class="card reveal reveal-delay-1">
+            <div class="card-icon ci-green">&#x1F4B3;</div>
+            <h3>Pagos y Facturas</h3>
+            <p>Consulta tu saldo, historial de pagos y realiza pagos desde la app.</p>
+        </div>
+        <div class="card reveal reveal-delay-2">
+            <div class="card-icon ci-orange">&#x1F3AB;</div>
+            <h3>Tickets de Soporte</h3>
+            <p>Crea tickets y da seguimiento en tiempo real a tus solicitudes.</p>
+        </div>
+        <div class="card reveal reveal-delay-3">
+            <div class="card-icon ci-purple">&#x1F4E1;</div>
+            <h3>Planes de Internet</h3>
+            <p>Explora planes disponibles y solicita cambios o mejoras.</p>
+        </div>
+        <div class="card reveal reveal-delay-4">
+            <div class="card-icon ci-cyan">&#x1F514;</div>
+            <h3>Notificaciones</h3>
+            <p>Alertas sobre tu servicio, facturas por vencer y mantenimientos.</p>
+        </div>
+        <div class="card reveal reveal-delay-5">
+            <div class="card-icon ci-red">&#x1F512;</div>
+            <h3>Face ID</h3>
+            <p>Acceso seguro con autenticacion biometrica. Tu cuenta protegida.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Divider -->
+<div class="section-divider"></div>
+
+<!-- Immersive / How it works -->
+<section class="immersive">
+    <div class="immersive-bg"></div>
+    <h2 class="reveal">Empieza en minutos.</h2>
+    <p class="reveal reveal-delay-1">Tres pasos simples para tener el control total de tu servicio.</p>
+
+    <div class="steps-row">
+        <div class="step-item reveal reveal-delay-2">
+            <div class="step-number">1</div>
+            <h4>Descarga</h4>
+            <p>Busca "Mi GoldMax" en el App Store.</p>
+        </div>
+        <div class="step-item reveal reveal-delay-3">
+            <div class="step-number">2</div>
+            <h4>Inicia sesion</h4>
+            <p>Usa tus credenciales de GoldMax.</p>
+        </div>
+        <div class="step-item reveal reveal-delay-4">
+            <div class="step-number">3</div>
+            <h4>Listo</h4>
+            <p>Gestiona todo desde tu iPhone.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Divider -->
+<div class="section-divider"></div>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+    <div class="contact-wrapper">
+        <div class="section-header">
+            <p class="section-overline reveal">Contacto</p>
+            <h2 class="reveal reveal-delay-1">Necesitas ayuda?</h2>
+            <p class="reveal reveal-delay-2">Nuestro equipo esta listo para asistirte.</p>
+        </div>
+
+        <div class="contact-cards">
+            <a href="https://wa.me/18297893277?text=Hola,%20necesito%20ayuda" class="contact-card reveal reveal-delay-1">
+                <div class="cc-icon">&#x1F4AC;</div>
+                <h4>WhatsApp</h4>
+                <p>(829) 789-3277</p>
+            </a>
+            <a href="tel:+18297893277" class="contact-card reveal reveal-delay-2">
+                <div class="cc-icon">&#x1F4DE;</div>
+                <h4>Llamar</h4>
+                <p>(829) 789-3277</p>
+            </a>
+            <a href="mailto:soporte@goldmax.do" class="contact-card reveal reveal-delay-3">
+                <div class="cc-icon">&#x2709;&#xFE0F;</div>
+                <h4>Correo</h4>
+                <p>soporte@goldmax.do</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-inner">
+        <span class="footer-text">&copy; 2026 GoldMax. Republica Dominicana.</span>
         <div class="footer-links">
-            <a href="index.html">Politica de Privacidad</a>
+            <a href="privacy.html">Privacidad</a>
             <a href="support.html">Soporte</a>
         </div>
-    </footer>
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+// Theme Toggle
+function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+}
+// Restore theme
+(function() {
+    const saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+})();
+
+// Scroll Reveal
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
